@@ -19,7 +19,7 @@ from torch.autograd import Variable
 from PIL import Image
 import numpy as np
 import math
-from utils.myTransforms import denorm, norms, detransformcv2
+from myTransforms import denorm, norms, detransformcv2
 
 
 def makeTestingData(block_size, block_extend, img):
