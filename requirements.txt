@@ -116,7 +116,7 @@ notebook==6.0.2
 numba==0.46.0
 numexpr==2.7.0
 numpy==1.19.3
-numpydoc==0.9.1
+numpydoc==0.
 olefile==0.46
 opencv-python==4.1.2.30
 openpyxl==3.0.1
