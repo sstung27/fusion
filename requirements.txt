@@ -218,7 +218,7 @@ tf-estimator-nightly==1.14.0.dev2019060501
 tifffile==2020.10.1
 toml==0.10.2
 toolz==0.10.0
-torch==1.2.0
+torch==1.3.0
 torchvision==0.4.1
 torchviz==0.0.1
 tornado==6.0.3
