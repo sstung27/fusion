@@ -10,7 +10,6 @@ import matplotlib.pyplot as plt
 import tifffile
 from io import BytesIO
 import base64
-import os
 
 # st.title('我的第一個應用程式')
 st.header("Image Fusion Example")
