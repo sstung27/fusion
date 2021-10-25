@@ -96,15 +96,15 @@ if st.button('fusion') and file_up1 is not None and file_up2 is not None:
             st.write("processing time: {:.3} second".format(time_cost))
             st.image(fused_im, caption='Fused Image.', use_column_width=True)
 
-#             result = Image.fromarray(np.array(fused_im*255).astype('uint8'))
-#             st.markdown(get_image_download_link(result), unsafe_allow_html=True)
+            result = Image.fromarray(np.array(fused_im*255).astype('uint8'))
+            st.markdown(get_image_download_link(result), unsafe_allow_html=True)
             
 #             fused_im = cv2.cvtColor(fused_im, cv2.COLOR_RGB2BGR)
 #             result2 = np.array(fused_im * 255).astype('uint8')
 #             st.markdown(get_image_download_link_cv2(result2), unsafe_allow_html=True)
 
-        fused_im = cv2.cvtColor(fused_im, cv2.COLOR_RGB2BGR)
-        cv2.imwrite("IFCNN_streamlit.bmp", (fused_im * 255).astype('uint8'))
+#         fused_im = cv2.cvtColor(fused_im, cv2.COLOR_RGB2BGR)
+#         cv2.imwrite("IFCNN_streamlit.bmp", (fused_im * 255).astype('uint8'))
 #         with open("IFCNN_streamlit.bmp", "rb") as fp:
 #             btn = st.download_button(
 #                 label="Download IMAGE",
