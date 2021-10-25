@@ -9,8 +9,8 @@ import matplotlib.pyplot as plt
 import tifffile
 from io import BytesIO
 import base64
+from random import randint
 
-# st.title('我的第一個應用程式')
 st.header("Image Fusion Example")
 
 # uploaded_file1 = st.file_uploader("Input the first image file", type=["jpg","bmp","png","tif"])
@@ -39,7 +39,8 @@ def get_image_download_link_cv2(img):
     href = f'<a href="data:file/bmp;base64,{img_str}">Download result2</a>'
     return href
 
-
+if 'key' not in st.session_state:
+    st.session_state.key = str(randint(1000, 100000000))
 
 file_up1 = st.file_uploader("Upload First Image", type=["jpg","bmp","png","tif"])
 if file_up1 is not None:
@@ -54,6 +55,10 @@ if file_up1 is not None:
         image1 = Image.open(file_up1)
         image1 = np.array(image1)/255
 
+    if image1.shape[0] > 3000 or image1.shape[1] > 3000:
+        st.session_state.pop('key')
+        st.experimental_rerun()
+    
     image1 = image1.astype('float32')
     st.write("image size:", image1.shape, "dtype:", image1.dtype, "file type：", str(tail1))
     st.image(image1, caption='Uploaded First Image.', use_column_width=True)
@@ -70,6 +75,10 @@ if file_up2 is not None:
     else:
         image2 = Image.open(file_up2)
         image2 = np.array(image2) / 255
+    
+    if image2.shape[0] > 3000 or image2.shape[1] > 3000:
+        st.session_state.pop('key')
+        st.experimental_rerun()
 
     image2 = image2.astype('float32')
     st.write("image size:", image2.shape, "dtype:", image2.dtype, "file type：", str(tail2))
