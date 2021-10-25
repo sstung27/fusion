@@ -5,7 +5,6 @@ import pandas as pd
 import cv2
 from PIL import Image, ImageOps
 from streamlit_MS import doing_fusion
-# from skimage import io
 import matplotlib.pyplot as plt
 import tifffile
 from io import BytesIO
@@ -26,13 +25,13 @@ st.header("Image Fusion Example")
 
 def get_image_download_link(img):
     buffered = BytesIO()
-    img.save(buffered, format="JPEG")
+    img.save(buffered, format="BMP")
     img_str = base64.b64encode(buffered.getvalue()).decode()
     href = f'<a href="data:file/bmp;base64,{img_str}">Download result</a>'
     return href
 
 def get_image_download_link_cv2(img):
-    is_success, buffer = cv2.imencode(".jpg", img)
+    is_success, buffer = cv2.imencode(".bmp", img)
     io_buf = BytesIO(buffer)
     # decode
     # decode_img = cv2.imdecode(np.frombuffer(io_buf.getbuffer(), np.uint8), -1)
