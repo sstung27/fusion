@@ -85,7 +85,7 @@ def reconImg(arrayClear, block_numM, block_numN, block_size, block_extend, h, w,
     img = img[m1:m1+h,n1:n1+w,:]
     return img
 
-
+device = torch.device("cpu")
 def doing_fusion(image1, image2):
     fuse_scheme = 0
     if fuse_scheme == 0:
@@ -103,7 +103,7 @@ def doing_fusion(image1, image2):
     model.load_state_dict(torch.load('sigma' + str(sigma) + '_epoch500.pth'))
     # model.load_state_dict(torch.load(r'D:\nspoDNN\venv\IFCNN\Code\snapshots\IFCNN-MAX.pth'))
     model.eval()
-    model = model.cuda()
+    model = model.to(device)
 
     # test_set=['FS5_G000_MS_L1A_20191122_025853','FS5_G000_MS_L1A_20210308_025920','FS5_G000_MS_L1A_20210408_034832',
     #           'FS5_G000_MS_L1A_20210727_052602','FS5_G053_MS_L1A_20210113_030314','FS5_G054_MS_L1A_20210113_030317']
@@ -138,7 +138,7 @@ def doing_fusion(image1, image2):
 
         # perform image fusion
         with torch.no_grad():
-            res = model(Variable(img1), Variable(img2))
+            res = model(Variable(img1.to(device)), Variable(img2.to(device)))
             res = denorm(mean, std, res[0]).clamp(0, 1)
             res_img = res.cpu().data.numpy()
             img = res_img.transpose(1,2,0)
