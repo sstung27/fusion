@@ -102,8 +102,8 @@ def doing_fusion(image1, image2):
     model = myIFCNN(fuse_scheme=fuse_scheme)
     model.load_state_dict(torch.load('sigma' + str(sigma) + '_epoch500.pth'))
     # model.load_state_dict(torch.load(r'D:\nspoDNN\venv\IFCNN\Code\snapshots\IFCNN-MAX.pth'))
-    model.eval()
     model = model.to(device)
+    model.eval()
 
     # test_set=['FS5_G000_MS_L1A_20191122_025853','FS5_G000_MS_L1A_20210308_025920','FS5_G000_MS_L1A_20210408_034832',
     #           'FS5_G000_MS_L1A_20210727_052602','FS5_G053_MS_L1A_20210113_030314','FS5_G054_MS_L1A_20210113_030317']
