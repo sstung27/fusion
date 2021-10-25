@@ -43,7 +43,7 @@ def get_image_download_link_cv2(img):
 if 'key' not in st.session_state:
     st.session_state.key = str(randint(1000, 100000000))
 
-file_up1 = st.file_uploader("Upload First Image, size is no large than 3000", type=["jpg","bmp","png","tif"], key=st.session_state.key)
+file_up1 = st.file_uploader("Upload First Image, height and width are no larger than 3000", type=["jpg","bmp","png","tif"], key=st.session_state.key)
 if file_up1 is not None:
     # display image that user uploaded
     head1, sep1, tail1 = str(file_up1.name).partition(".")
@@ -56,9 +56,9 @@ if file_up1 is not None:
         image1 = Image.open(file_up1)
         image1 = np.array(image1)/255
 
-    # if image1.shape[0] > 3000 or image1.shape[1] > 3000:
-    #     st.session_state.pop('key')
-    #     st.experimental_rerun()
+    if image1.shape[0] > 3000 or image1.shape[1] > 3000:
+        st.session_state.pop('key')
+        st.experimental_rerun()
 
     image1 = image1.astype('float32')
     st.write("image size:", image1.shape, "dtype:", image1.dtype, "file type：", str(tail1))
@@ -66,7 +66,7 @@ if file_up1 is not None:
 
 
 
-file_up2 = st.file_uploader("Upload Second Image, size is no large than 3000", type=["jpg","bmp","png","tif"])
+file_up2 = st.file_uploader("Upload Second Image, height and width are no larger than 3000", type=["jpg","bmp","png","tif"])
 if file_up2 is not None:
     # display image that user uploaded
     head2, sep2, tail2 = str(file_up2.name).partition(".")
@@ -79,9 +79,9 @@ if file_up2 is not None:
         image2 = Image.open(file_up2)
         image2 = np.array(image2) / 255
 
-    # if image2.shape[0] > 3000 or image2.shape[1] > 3000:
-    #     st.session_state.pop('key')
-    #     st.experimental_rerun()
+    if image2.shape[0] > 3000 or image2.shape[1] > 3000:
+        st.session_state.pop('key')
+        st.experimental_rerun()
 
     image2 = image2.astype('float32')
     st.write("image size:", image2.shape, "dtype:", image2.dtype, "file type：", str(tail2))
