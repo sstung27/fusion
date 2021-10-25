@@ -25,9 +25,9 @@ st.header("Image Fusion Example")
 
 def get_image_download_link(img):
     buffered = BytesIO()
-    img.save(buffered, format="BMP")
+    img.save(buffered, format="JPEG")
     img_str = base64.b64encode(buffered.getvalue()).decode()
-    href = f'<a href="data:file/bmp;base64,{img_str}">Download result</a>'
+    href = f'<a href="data:file/jpg;base64,{img_str}">Download result</a>'
     return href
 
 def get_image_download_link_cv2(img):
