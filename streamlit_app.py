@@ -98,8 +98,8 @@ if st.button('fusion') and file_up1 is not None and file_up2 is not None:
             st.write("processing time: {:.3} second".format(time_cost))
             st.image(fused_im, caption='Fused Image.', use_column_width=True)
 
-            result = Image.fromarray(np.array(fused_im*255).astype('uint8'))
-            st.markdown(get_image_download_link(result), unsafe_allow_html=True)
+#             result = Image.fromarray(np.array(fused_im*255).astype('uint8'))
+#             st.markdown(get_image_download_link(result), unsafe_allow_html=True)
 
             # fused_im = cv2.cvtColor(fused_im, cv2.COLOR_RGB2BGR)
             # result2 = np.array(fused_im * 255).astype('uint8')
@@ -115,10 +115,10 @@ if st.button('fusion') and file_up1 is not None and file_up2 is not None:
         #         mime="image/bmp"
         #     )
 
-        # fused_im = cv2.cvtColor(fused_im, cv2.COLOR_RGB2BGR)
-        # result2 = np.array(fused_im * 255).astype('uint8')
-        # is_success, buffer = cv2.imencode(".bmp", result2)
-        # io_buf = BytesIO(buffer)
-        # btn = st.download_button(label="Download IMAGE", data=io_buf, file_name="IFCNN_streamlit.bmp", mime="image/bmp")
+        fused_im = cv2.cvtColor(fused_im, cv2.COLOR_RGB2BGR)
+        result2 = np.array(fused_im * 255).astype('uint8')
+        is_success, buffer = cv2.imencode(".bmp", result2)
+        io_buf = BytesIO(buffer)
+        btn = st.download_button(label="Download IMAGE", data=io_buf, file_name="IFCNN_streamlit.bmp", mime="image/bmp")
 
 
